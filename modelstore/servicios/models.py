@@ -5,9 +5,9 @@ from django.db import models
 class Servicio(models.Model):
     titulo = models.CharField(max_length=50)
     contenido = models.TextField(max_length=250)
-    imagen = models.ImageField()
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateField(auto_created=True)
+    imagen = models.ImageField(upload_to='Servicios', blank=False, null=False)
+    created = models.DateField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
 
     
 
