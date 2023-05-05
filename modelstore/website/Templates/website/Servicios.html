@@ -2,20 +2,24 @@
 
 {% load static %}
 
+<!-- Bloque CSS -->
+<link rel="stylesheet" href="{% static 'website/css/servicios.css' %}">
 
 {% block content %}
 
  {% for servicio in servicios %}
 
-<div>
-  <p> 
+<div class="container justify-content-center text-center mt-3 mb-5">
+  <div>
+    <p> 
 
-    <h2 style="color: white;">{{servicio.titulo}}</h2><br><br>
+      <h2 style="color: white;">{{servicio.titulo}}</h2><br><br>
 
-    <p><img src="{{servicio.imagen.url}}"></p>
+      <p><img src="{{servicio.imagen.url}}" width="400px"></p>
 
-    <p style="color: white;">{{ servicio.contenido}}</p>
-  </p>
+      <p style="font-size: 1.25em; color: white;">{{ servicio.contenido}}</p>
+    </p>
+  </div>  
 </div>
 
   {% endfor %}
