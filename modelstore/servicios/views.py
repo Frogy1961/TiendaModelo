@@ -9,8 +9,3 @@ def services(request):
 
     return render(request, "servicios/Servicios.html", {"servicios" : servicios})
 
-def detailservices(request):
-
-    detalles=Servicio.objects.all()
-
-    return render(request, "servicios/ServiciosDetalles.html", {"detalles" : detalles})
