@@ -13,9 +13,6 @@ def store(request):
     return render(request, "website/Tienda.html")
 
 
-def blog(request):
-    return render(request, "website/Blog.html")
-
 
 def contact(request):
     return render(request, "website/Contacto.html")
