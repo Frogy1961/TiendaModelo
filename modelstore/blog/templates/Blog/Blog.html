@@ -8,25 +8,26 @@
 {% block content %}
 
    {% for post in posts %}
-
-   <section class="page-section clearfix">
-    <div class="container">
-      <div class="intro">
-        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{post.imagen.url}}" alt="" style="width: 400px;height: 400px;">
-        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-          <h2 class="section-heading mb-4" >
-            <span class="section-heading-lower">{{post.titulo}}</span>
-            <span class="section-heading-upper">{{ post.contenido}}</span>
-            
-          </h2>
-         
-         
-        </div>
-      </div>
-    </div>
-  </section>
+      {% for categoria in post.categorias.all %}
+        <section class="page-section clearfix">
+          <div class="container">
+            <div class="intro">
+              <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{post.imagen.url}}" alt="" style="width: 500px;height: 500px;">
+              <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                <h2 class="section-heading mb-4" >
+                  <span class="section-heading-lower">{{post.titulo}}</span>  
+                  <span class="section-heading-upper">{{ post.contenido}}</span>
+                  <span class="section-heading-upper" style="text-align: left; margin-top: 20px; font-size: 0.4em;" > Autor: {{ post.autor}}</span>
+                  <span class="section-heading-upper" style="text-align: left; margin-top: 5px;font-size: 0.4em;">Categoria: {{categoria}}</span>
+                </h2>
+      {% endfor %}        
+              
+              </div>
+            </div>
+          </div>
+        </section>
   
 
    {% endfor %}
-
+  
 {% endblock content %}   
