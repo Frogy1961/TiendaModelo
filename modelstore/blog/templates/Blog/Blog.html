@@ -6,28 +6,27 @@
 <link rel="stylesheet" href="{% static 'website/css/servicios.css' %}">
 
 {% block content %}
-
+  <div class="d-flex">
    {% for post in posts %}
       {% for categoria in post.categorias.all %}
-        <section class="page-section clearfix">
-          <div class="container">
-            <div class="intro">
-              <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{post.imagen.url}}" alt="" style="width: 500px;height: 500px;">
-              <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-                <h2 class="section-heading mb-4" >
-                  <span class="section-heading-lower">{{post.titulo}}</span>  
-                  <span class="section-heading-upper">{{ post.contenido}}</span>
-                  <span class="section-heading-upper" style="text-align: left; margin-top: 20px; font-size: 0.4em;" > Autor: {{ post.autor}}</span>
-                  <span class="section-heading-upper" style="text-align: left; margin-top: 5px;font-size: 0.4em;">Categoria: {{categoria}}</span>
-                </h2>
-      {% endfor %}        
-              
+        <section class="page-section clearfix" style="margin-left: 100px;">
+          <div>
+            <div class="card" style="width: 25rem;">
+              <img src="{{post.imagen.url}}" class="card-img-top" alt="img">
+              <div class="card-body">
+                <h5 class="card-title">{{post.titulo}}</h5>
+                <p class="card-text">{{post.contenido}}</p>
+                <p class="card-text">{{post.autor}}</p>
+                <p class="card-text">{{categoria}}</p>
+
+                <a href="#" class="btn btn-primary">Más información</a>
               </div>
             </div>
           </div>
+      {% endfor %}    
         </section>
-  
+   
 
    {% endfor %}
-  
+  </div>
 {% endblock content %}   
