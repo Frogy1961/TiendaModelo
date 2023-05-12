@@ -6,6 +6,14 @@
 <link rel="stylesheet" href="{% static 'website/css/servicios.css' %}">
 
 {% block content %}
+  {% for post in posts %}
+    {% for categoria in post.categorias.all %}
+    <div class="container">
+      <p style="color: white; font-size: 4em;text-align: center;">{{categoria}}</p>
+    </div>
+
+    {% endfor %}
+  {% endfor %}  
   <div class="d-flex">
    {% for post in posts %}
       {% for categoria in post.categorias.all %}

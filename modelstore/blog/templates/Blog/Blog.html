@@ -6,17 +6,39 @@
 <link rel="stylesheet" href="{% static 'website/css/servicios.css' %}">
 
 {% block content %}
+  <div class="container" style="margin-top: 20px;">
+      <div class="d-flex">
+        {% for post in posts %}
+          {% for categoria in post.categorias.all %}
+          <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+            <div class="container-fluid">
+              <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'inicio' %}">Home & Business</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto">
+                  <li class="nav-item {% if request.path == '/' %}active{% endif %} px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="{% url 'categoria' categoria.id %}">{{categoria.nombre}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          {% endfor%}
+        {% endfor%}  
+      </div>
+  </div>  
   <div class="d-flex">
    {% for post in posts %}
       {% for categoria in post.categorias.all %}
-      <a href="{% url 'categoria' categoria.id %}" class="linksCategorias">{{categoria.nombre}}</a>&nbsp;
         <section class="page-section clearfix" style="margin-left: 100px;">
           <div>
             <div class="card" style="width: 25rem; background-color: rgb(24, 64, 8)">
-              <img src="{{post.imagen.url}}" class="card-img-top" alt="img">
+              <img src="{{post.imagen.url}}" class="card-img-top" alt="img" style="height: 400px;">
               <div class="card-body">
                 <h5 class="card-title" style="color: white;">{{post.titulo}}</h5>
-                <p class="card-text" style="color: white;">{{post.contenido}}</p>
+                <p class="card-text" style="color: white;">{{post.contenido|truncatewords:18}}</p>
                 <p class="card-text" style="color: white;">Autor: {{post.autor}}</p>
                 <p class="card-text" style="color: white;">Categorìa: {{categoria}}</p>
 

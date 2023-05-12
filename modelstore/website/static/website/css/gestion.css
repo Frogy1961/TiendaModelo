@@ -278,7 +278,8 @@ ul.errorlist{
   color: red;
 }
 
-.linksCategorias{
-  color: white !important;
-  text-decoration: underline;
+.navCategorias{
+  display: inline-block;
+  float: none;
+  vertical-align: top;
 }
