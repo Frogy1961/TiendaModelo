@@ -283,3 +283,12 @@ ul.errorlist{
   float: none;
   vertical-align: top;
 }
+
+.contenedorFormulario{
+  background-color: rgba(24, 64, 8, 0.8);
+  width: 40%;
+  margin: 10px auto 10px auto;
+  border-radius: 5px;
+  padding: 1px 0pc;
+
+}

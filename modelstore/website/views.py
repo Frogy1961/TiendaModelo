@@ -14,6 +14,4 @@ def store(request):
 
 
 
-def contact(request):
-    return render(request, "website/Contacto.html")
 

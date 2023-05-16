@@ -1,0 +1,29 @@
+{% extends "website/Base.html" %}
+
+{% load static %}
+
+<!-- Bloque CSS -->
+<link rel="stylesheet" href="{% static 'website/css/servicios.css' %}">
+
+{% block content%}
+
+<section>
+    <div class="container">
+        <div class="container">
+          <h2 class="text-center" style="color: white;font-size: 3em;">{{titulo}}</h2>
+        </div>
+        <div class="container">
+          <img src="{{titulo.imagen.url}}" style="width: 450px; height:450px; margin-left: 410px; margin-top: 40px;" >
+        </div>
+        <div class="container">
+          <p style="color: white;width: 800px;margin-left: 250px;margin-top: 40px;font-size: 1.2em;">{{titulo.contenido}}</p>
+        </div>
+        <div class="container">      
+          <p style="color: white;font-size: 0.8em;">{{titulo.autor}}</p>
+          <p style="color: white;font-size: 0.8em;">Publicado: {{titulo.created}}</p>
+          <p style="color: white;font-size: 0.8em;">Actualizado: {{titulo.updated}}</p>
+         </div>
+
+    </div>
+</section>   
+{% endblock content%}

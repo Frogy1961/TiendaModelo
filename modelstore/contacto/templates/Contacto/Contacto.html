@@ -1,0 +1,15 @@
+{% extends "website/Base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+<div class="contenedorFormulario">
+   <form action="" method="POST" style="text-align: center;">
+     {% csrf_token %}
+     <table style="color: white; margin: 20px auto;">{{ MiFormulario.as_table }}</table>
+     <input type="submit" value="Enviar">
+   </form>
+</div>
+
+{% endblock content %}

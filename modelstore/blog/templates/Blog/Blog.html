@@ -2,8 +2,7 @@
 
 {% load static %}
 
-<!-- Bloque CSS -->
-<link rel="stylesheet" href="{% static 'website/css/servicios.css' %}">
+
 
 {% block content %}
   <div class="container" style="margin-top: 20px;">
@@ -42,7 +41,7 @@
                 <p class="card-text" style="color: white;">Autor: {{post.autor}}</p>
                 <p class="card-text" style="color: white;">Categorìa: {{categoria}}</p>
 
-                <a href="#" class="btn btn-warning" style="margin-left: 110px;">Más información</a>
+                <a href="{% url 'post' post.id %}" class="btn btn-warning" style="margin-left: 110px">Más información</a>
               </div>
             </div>
           </div>

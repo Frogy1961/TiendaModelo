@@ -14,3 +14,8 @@ def categoria(request, categoria_id):
     post=Post.objects.filter(categorias=categoria)
     return render(request, "Blog/Categorias.html", {'categoria' : categoria, "posts" : post})
 
+def post(request, post_id):
+    titulo=Post.objects.get(id=post_id)
+    posts=Post.objects.filter(titulo=titulo) 
+    return render(request,"Blog/Post.html", {'titulo' : titulo, "posts" : posts})
+
