@@ -5,6 +5,12 @@
 
 {% block content %}
 <div class="contenedorFormulario">
+
+   {% if "valido" in request.GET %}
+    <p style="color: white;">Gracias por contactarnos</p>  
+    
+   {% endif %}
+
    <form action="" method="POST" style="text-align: center;">
      {% csrf_token %}
      <table style="color: white; margin: 20px auto;">{{ MiFormulario.as_table }}</table>
