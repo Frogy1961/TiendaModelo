@@ -9,8 +9,7 @@ def home(request):
     return render(request, "website/Home.html")
 
 
-def store(request):
-    return render(request, "website/Tienda.html")
+
 
 
 

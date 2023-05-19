@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import FormularioContacto
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
+from decouple import config
 
 # Create your views here.
 
@@ -17,7 +18,7 @@ def contact(request):
 
             email=EmailMessage("Mensaje de H&B Shop",
             "De {} con email {} enía el siguiente mensaje:\n\n {}".format(nombre,email,contenido),"",
-            ["home.bussines.shop@gmail.com"],reply_to=[email])
+            [config('EMAIL_HOST_USER')],reply_to=[email])
 
             try:
                 email.send()
