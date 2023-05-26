@@ -6,5 +6,11 @@
 {% block content %}
 
 <div><p style="color: white;">   Hola Tienda </p></div>
+{% for producto in productos %}
+<p style="color: white;">{{producto.nombre}}</p>
+
+
+
+{% endfor %}
 
 {% endblock content %}
