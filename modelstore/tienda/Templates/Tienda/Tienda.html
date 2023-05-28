@@ -4,13 +4,30 @@
 
 
 {% block content %}
-
-<div><p style="color: white;">   Hola Tienda </p></div>
+<div class="d-flex">
 {% for producto in productos %}
-<p style="color: white;">{{producto.nombre}}</p>
+<div class="card" style="width: 25rem; margin: 5vw;">
+    <a href="#">
+    <img src="{{producto.imagen.url}}" class="card-img-top" alt="imgen-de-producto">
+    </a>
+    <div class="card-body">
+      <h5 class="card-title" style="font-size: 2vw;">{{producto.nombre}}</h5>
+      <p class="card-text" style="font-size: 1.2vw;">{{producto.descripcion|truncatewords:18}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" style="font-size: 1.3vw;">Precio: $ {{producto.precio}}</li>
+      {% if producto.precio_oferta > 0 %}
+      <li class="list-group-item" style="color: red; font-size: 1.3vw;">Oferta: $ {{producto.precio_oferta}}</li>
+      {% endif %}
+      <li class="list-group-item"></li>
+    </ul>
+    <div class="card-body">
+        <a href="#" class="btn btn-warning" style="margin-left: 1vw; font-size: 1.2vw;">Comprar</a>
+    </div>
+  </div>
 
 
 
 {% endfor %}
-
+</div>
 {% endblock content %}

@@ -25,7 +25,7 @@ class Producto(models.Model):
     imagen2 = models.ImageField(upload_to="Tienda", blank=True, null=True)
     imagen3 = models.ImageField(upload_to="Tienda", blank=True, null=True)
     descripcion = models.CharField(max_length=200)
-    categoria = models.CharField(max_length=20,default=None)
+    categoria = models.ManyToManyField(CategoriaProd)
     precio = models.FloatField(max_length=20)
     precio_oferta = models.FloatField(max_length=20)
     created = models.BooleanField(default=True)
