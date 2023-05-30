@@ -6,20 +6,15 @@
 <link rel="stylesheet" href="{% static 'website/css/servicios.css' %}">
 
 {% block content %}
-  {% for post in posts %}
-    {% for categoria in post.categorias.all %}
-    <div class="container">
-      <p style="color: white; font-size: 4em;text-align: center;">{{categoria}}</p>
-    </div>
-
-    {% endfor %}
-  {% endfor %}  
+  <div>
+    <p style="color: white; font-size: 3vw;text-align: center;">{{categoria}}</p>
+  </div>
   <div class="d-flex">
    {% for post in posts %}
       {% for categoria in post.categorias.all %}
-        <section class="page-section clearfix" style="margin-left: 100px;">
+        <section class="page-section clearfix" style="margin-left: 10vw;">
           <div>
-            <div class="card" style="width: 25rem; background-color: rgb(24, 64, 8)">
+            <div class="card" style="width: 25vw; background-color: rgb(24, 64, 8)">
               <img src="{{post.imagen.url}}" class="card-img-top" alt="img">
               <div class="card-body">
                 <h5 class="card-title" style="color: white;">{{post.titulo}}</h5>
