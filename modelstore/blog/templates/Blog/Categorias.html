@@ -22,7 +22,7 @@
                 <p class="card-text" style="color: white;">Autor: {{post.autor}}</p>
                 <p class="card-text" style="color: white;">Categorìa: {{categoria}}</p>
 
-                <a href="#" class="btn btn-warning" style="margin-left: 110px;">Más información</a>
+                <a href="{% url 'post' post.id %}" class="btn btn-warning" style="margin-left: 110px;">Más información</a>
               </div>
             </div>
           </div>
