@@ -6,7 +6,8 @@
 {% block content %}
 <div class="container">
   <div style="float:right">
-    <p style="color: white;">Total: $ {{importe_total_carro}} </p>
+    
+    {% include "carro/widget.html" %}
   </div>
   <div class="row">
 {% for producto in productos %}
@@ -29,7 +30,7 @@
           <li class="list-group-item"></li>
         </ul>
         <div class="card-body">
-            <a href="#" class="btn btn-warning" style="margin-left: 1vw; font-size: 1.2vw;">Añadir al carro</a>
+            <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-warning" style="margin-left: 1vw; font-size: 1.2vw;">Añadir al carro</a>
         </div>
       </div>
   </div>
