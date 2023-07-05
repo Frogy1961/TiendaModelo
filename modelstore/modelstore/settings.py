@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+from django.contrib.messages import constants as mensajes_de_error
 
 from pathlib import Path
 from decouple import config
@@ -157,3 +158,11 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK='bootstrap5'
+
+MESSAGE_TAGS={
+    mensajes_de_error.DEBUG:'debug',
+    mensajes_de_error.INFO:'info',
+    mensajes_de_error.SUCCESS:'success',
+    mensajes_de_error.WARNING:'warning',
+    mensajes_de_error.ERROR:'danger',
+}
