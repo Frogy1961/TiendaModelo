@@ -1,45 +1,122 @@
 {% extends "website/Base.html" %}
-
 {% load static %}
 
-
 {% block content %}
-   <!-- Heading -->
-   <section class="page-section clearfix">
-    <div class="container">
-      <div class="intro">
-        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'website/img/PortadaCasa.jpg' %}" alt="" style="width: 50%;">
-        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-          <h2 class="section-heading mb-4" >
-            <span class="section-heading-upper">Seguridad Residencial y Comercial</span>
-            <span class="section-heading-lower">Las mejores soluciones</span>
-          </h2>
-          <p class="mb-3">Camaras de seguridad, cercos perimetrales, energía solar y mas..
-          </p>
-         
+
+<!-- AOS CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+<style>
+  /* Efecto hover en las tarjetas */
+  .card-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    background-color: #fff;
+  }
+  .card-shadow:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    background-color: #f0faff; /* tono suave azul */
+  }
+  .card-shadow i {
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  .card-shadow:hover i {
+    color: #0dcaf0;
+    transform: scale(1.15);
+  }
+</style>
+
+<!-- Hero principal -->
+<section class="position-relative text-white text-center" 
+         style="background: linear-gradient(rgba(15, 32, 39, 0.6), rgba(32, 58, 67, 0.6)), url('{% static 'website/img/PortadaCasa.jpg' %}') center/cover no-repeat; min-height: 60vh; display: flex; align-items: center; justify-content: center;"
+         data-aos="fade-up">
+  <div>
+    <h1 class="display-4 fw-bold">Seguridad Residencial y Comercial</h1>
+    <p class="lead mb-4">Cámaras, cercos eléctricos, energía solar y más soluciones profesionales</p>
+    <a href="{% url 'servicios' %}" class="btn btn-primary btn-lg px-4" data-aos="zoom-in" data-aos-delay="300">Ver Servicios</a>
+  </div>
+</section>
+
+<!-- Servicios destacados -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Nuestras Soluciones</h2>
+    <div class="row g-4">
+      
+      <!-- Cámaras -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="card h-100 border-0 shadow-sm text-center p-4 card-shadow">
+          <i class="fas fa-video fa-3x text-primary mb-3"></i>
+          <h5 class="fw-bold">Cámaras de Seguridad</h5>
+          <p>Monitoreo en tiempo real para hogares y negocios, con la mejor calidad de imagen y soporte técnico.</p>
         </div>
       </div>
+
+      <!-- Cercos -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="card h-100 border-0 shadow-sm text-center p-4 card-shadow">
+          <i class="fas fa-bolt fa-3x text-primary mb-3"></i>
+          <h5 class="fw-bold">Cercos Perimetrales</h5>
+          <p>Protección física de alta seguridad con sistemas eléctricos y sensores avanzados.</p>
+        </div>
+      </div>
+
+      <!-- Energía solar -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="card h-100 border-0 shadow-sm text-center p-4 card-shadow">
+          <i class="fas fa-solar-panel fa-3x text-primary mb-3"></i>
+          <h5 class="fw-bold">Energía Solar</h5>
+          <p>Sistemas de energía renovable para reducir costos y aumentar la autonomía de tu propiedad.</p>
+        </div>
+      </div>
+
+      <!-- Control de acceso -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="card h-100 border-0 shadow-sm text-center p-4 card-shadow">
+          <i class="fas fa-door-closed fa-3x text-primary mb-3"></i>
+          <h5 class="fw-bold">Control de Acceso</h5>
+          <p>Soluciones avanzadas para gestionar entradas y salidas, con cerraduras inteligentes y tarjetas RFID.</p>
+        </div>
+      </div>
+
+      <!-- Aire acondicionado -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+        <div class="card h-100 border-0 shadow-sm text-center p-4 card-shadow">
+          <i class="fas fa-fan fa-3x text-primary mb-3"></i>
+          <h5 class="fw-bold">Aire Acondicionado</h5>
+          <p>Instalación y mantenimiento de sistemas de climatización eficientes para hogares y negocios.</p>
+        </div>
+      </div>
+
+      <!-- Domótica -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+        <div class="card h-100 border-0 shadow-sm text-center p-4 card-shadow">
+          <i class="fas fa-house-signal fa-3x text-primary mb-3"></i>
+          <h5 class="fw-bold">Domótica</h5>
+          <p>Automatiza tu hogar con sistemas inteligentes que controlan iluminación, clima y seguridad.</p>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- Sección compromiso -->
+<section class="py-5 text-white text-center" style="background: linear-gradient(to right, #203a43, #2c5364);" data-aos="fade-up">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Compromiso Total</h2>
+    <p class="mb-4 fs-5">La seguridad de tu hogar o negocio en manos de profesionales. No dejes lo que más valoras en manos de aficionados.</p>
+    <a href="{% url 'contacto' %}" class="btn btn-outline-light btn-lg" data-aos="zoom-in" data-aos-delay="200">Solicitar Cotización</a>
+  </div>
+</section>
 
-  
-    <!-- Message -->
-    <section class="page-section cta">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <div class="cta-inner text-center rounded">
-              <h2 class="section-heading mb-4">
-                <span class="section-heading-upper">Compromiso total</span>
-                <span class="section-heading-lower">Garantizado</span>
-              </h2>
-              <p class="mb-0">La seguridad de tu hogar o negocio en manos de profesionales, no dejes lo que mas valoras en manos de aficionados.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+
 {% endblock content %}
-
-    

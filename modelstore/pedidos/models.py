@@ -17,8 +17,8 @@ class Pedido(models.Model):
     @property
     def total(self):
         return self.lineapedido_set.aggregate(
-            total=Sum(F("precio")*F("cantidad"), output_field=FloatField())
-        )["total"]
+            total=Sum(F("producto__precio")*F("cantidad"), output_field=FloatField())
+        )["total"] or 0
 
     class Meta:
         db_table='pedidos'
@@ -36,6 +36,10 @@ class LineaPedido(models.Model):
 
     def __str__(self):
         return f'{self.cantidad} unidades de {self.producto.nombre}'
+    
+    @property
+    def subtotal(self):
+        return self.producto.precio * self.cantidad
 
     class Meta:
         db_table='lineapedidos'

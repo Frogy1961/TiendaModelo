@@ -1,0 +1,53 @@
+{% extends "website/Base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5" data-aos="fade-up">
+  <div class="card shadow-lg border-0 rounded-3">
+    <div class="card-header bg-dark text-white text-center fw-bold">
+      🧾 Resumen de tu Pedido #{{ pedido.id }}
+    </div>
+
+    <div class="card-body">
+      <p class="text-muted text-center">
+        Realizado el: {{ pedido.created_at|date:"d M Y H:i" }}
+      </p>
+
+      <table class="table table-hover align-middle">
+        <thead class="table-light">
+          <tr class="text-center">
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for linea in lineas %}
+          <tr class="text-center">
+            <td>{{ linea.producto.nombre }}</td>
+            <td>{{ linea.cantidad }}</td>
+            <td>${{ linea.producto.precio }} MXP</td>
+            <td>${{ linea.subtotal|floatformat:2 }} MXP</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+<div class="card bg-light shadow-sm mt-3" style="min-width: 250px;">
+    <div class="card-body text-center">
+        <h5 class="fw-bold text-center">Total del Pedido</h5>
+        <p style="font-size: 1.3em; color: black;">
+            ${{ pedido.total|floatformat:2 }} MXP
+        </p>
+    </div>
+</div>
+
+
+    <div class="card-footer bg-light text-center">
+      <a href="{% url 'tienda' %}" class="btn btn-warning fw-semibold shadow-sm">
+        🛍 Seguir Comprando
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

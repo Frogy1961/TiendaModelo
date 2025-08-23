@@ -1,11 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Producto, CategoriaProd
 
-# Create your views here.
+def tienda(request, categoria_id=None):
+    # Todas las categorías activas
+    categorias = CategoriaProd.objects.filter(status=True)
 
-def store(request):
-
+    # Todos los productos por defecto
     productos = Producto.objects.all()
+    categoria_activa = None
 
-    return render(request, "Tienda/Tienda.html", {"productos":productos})
+    # Si hay categoría seleccionada, filtramos productos
+    if categoria_id:
+        categoria = get_object_or_404(CategoriaProd, id=categoria_id)
+        productos = productos.filter(categoria=categoria)
+        categoria_activa = categoria.id
+
+    return render(request, "tienda.html", {
+        "categorias": categorias,
+        "productos": productos,
+        "categoria_activa": categoria_activa
+    })
+
 

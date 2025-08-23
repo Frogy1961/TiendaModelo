@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -32,8 +33,18 @@ def procesar_pedido(request):
         )
 
     messages.success(request, "El pedido de ha creado existosamente")
+    
+    return redirect("detalle_pedido", pedido_id=pedido.id)
 
-    return redirect('../tienda')
+@login_required(login_url="/autenticacion/logear")
+def detalle_pedido(request, pedido_id):
+    pedido = get_object_or_404(Pedido, id=pedido_id, user=request.user)
+    lineas = pedido.lineapedido_set.all()
+
+    return render(request, "pedido/detalle_pedido.html", {
+        "pedido": pedido,
+        "lineas": lineas
+    })
 
 def enviar_mail(**kwargs):
 

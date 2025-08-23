@@ -1,56 +1,80 @@
 {% extends "website/Base.html" %}
-
 {% load static %}
 
-
-
 {% block content %}
-  <!-- <div class="container" style="margin-top: 20px;">
-      <div class="d-flex">
-        {% for post in posts %} 
-          {% for categoria in post.categorias.all %}
-          <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
-            <div class="container-fluid">
-              <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'inicio' %}">Home & Business</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav mx-auto">
-                  <li class="nav-item {% if request.path == '/' %}active{% endif %} px-lg-4">
-                    <a class="nav-link text-uppercase text-expanded" href="{% url 'categoria' categoria.id %}">{{categoria.nombre}}</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-          {% endfor%}
-        {% endfor%}
-      </div>
-  </div>  -->
-  <div class="d-flex">
-   {% for post in posts %}
-      {% for categoria in post.categorias.all %}
-        <section class="page-section clearfix" style="margin-left: 7vw;">
-          <div>
-            <div class="card" style="width: 25rem; background-color: rgb(24, 64, 8)">
+
+<!-- AOS CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+<style>
+  .blog-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  .blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  }
+  .blog-card img {
+    height: 250px;
+    object-fit: cover;
+  }
+  .blog-card .card-body {
+    padding: 20px;
+  }
+  .blog-card .card-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .blog-card .card-text {
+    font-size: 0.95rem;
+    color: #555;
+  }
+  .blog-meta {
+    font-size: 0.85rem;
+    color: #777;
+  }
+</style>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Nuestro Blog</h2>
+    <div class="row g-4">
+      {% for post in posts %}
+        {% for categoria in post.categorias.all %}
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+            <div class="card blog-card h-100 shadow-sm">
               <a href="{% url 'post' post.id %}">
-              <img src="{{post.imagen.url}}" class="card-img-top" alt="imgen-de-post" style="height: 400px;">
+                <img src="{{ post.imagen.url }}" class="card-img-top" alt="imagen de {{ post.titulo }}">
               </a>
               <div class="card-body">
-                <h5 class="card-title" style="color: white;">{{post.titulo}}</h5>
-                <p class="card-text" style="color: white;">{{post.contenido|truncatewords:18}}</p>
-                <p class="card-text" style="color: white;">Autor: {{post.autor}}</p>
-                <p class="card-text" style="color: white;">Categorìa: {{categoria}}</p>
-
-                <a href="{% url 'categoria' categoria.id %}" class="btn btn-warning" style="margin-left: 110px">Más de {{categoria}}</a>
+                <h5 class="card-title">{{ post.titulo }}</h5>
+                <p class="card-text">{{ post.contenido|truncatewords:18 }}</p>
+                <p class="blog-meta">Autor: {{ post.autor }}</p>
+                <p class="blog-meta">Categoría: {{ categoria }}</p>
+                <a href="{% url 'categoria' categoria.id %}" class="btn btn-primary btn-sm mt-2">
+                  Más de {{ categoria }}
+                </a>
               </div>
             </div>
           </div>
-      {% endfor %}    
-        </section>
-   
-
-   {% endfor %}
+        {% endfor %}
+      {% endfor %}
+    </div>
   </div>
-{% endblock content %}   
+</section>
+
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+
+{% endblock content %}
+

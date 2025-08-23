@@ -1,53 +1,64 @@
-<table class="table table-bordered" style="color: white;">
-   <thead>
-    <tr>
-        <th colspan="3" class="text-center">
-            Carro Compras
-        </th>
-    </tr>
+<div class="card shadow-lg border-0 rounded-3" data-aos="fade-left">
+  <div class="card-header bg-dark text-white text-center fw-bold">
+    🛒 Carrito de Compras
+  </div>
 
-    <tr>
-        <th>Producto</th>
-        <th>Cantidad</th>
-        <th>Suma</th>
-    </tr>
-   </thead>
-
-   <tbody>
-       {% if request.session.carro.items %}
-           {% for key, value in request.session.carro.items %}
-                <tr class="text-center">
-                   <td>{{value.nombre}}</td>
-                   <td>{{value.cantidad}}</td>
-                   <td>
-                    <a href="{% url 'carro:agregar' value.producto_id %}" class="btn btn-sm btn-warning">+</a>
-                    <a href="{% url 'carro:restar' value.producto_id %}" class="btn btn-sm btn-warning">-</a><br/>
-                    {{value.precio}} MXP
-                   </td>
-                </tr>
-           {% endfor %}
-        {% else %}
-           <tr>
-            <td colspan="3">
-                <div class="alert alert-danger text-center">
-                    Carro Vacío
-                </div>
-            </td>
-           </tr>
-        {% endif %}
-   </tbody>
-   <footer>
-    <tr>
-        <td colspan="3">
-            Total: $ {{importe_total_carro}} MXP
-        </td>
-    </tr>
+  <div class="card-body p-0">
     {% if request.session.carro.items %}
-    <tr>
-        <td colspan="3" style="text-align: center;">
-            <a href="../pedidos" class="btn btn-warning">Comprar</a>
-        </td>
-    </tr>
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr class="text-center">
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for key, value in request.session.carro.items %}
+            <tr class="text-center">
+              <td class="fw-semibold">{{ value.nombre }}</td>
+              <td>{{ value.cantidad }}</td>
+              <td>
+                <div class="d-flex justify-content-center align-items-center gap-2">
+                  <a href="{% url 'carro:agregar' value.producto_id %}" 
+                     class="btn btn-sm btn-success rounded-circle">+</a>
+                  <a href="{% url 'carro:restar' value.producto_id %}" 
+                     class="btn btn-sm btn-danger rounded-circle">−</a>
+                </div>
+                <div class="mt-2 text-muted small">
+                  {{ value.precio }} MXP
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="alert alert-warning text-center m-3 rounded-3 shadow-sm">
+        🚫 Carrito vacío
+      </div>
     {% endif %}
-   </footer>
-</table>
+  </div>
+
+  <div class="card-footer bg-light">
+    <div class="d-flex justify-content-between align-items-center">
+      <span class="fw-bold">Total:</span>
+      <span class="fw-bold text-primary">${{ importe_total_carro }} MXP</span>
+    </div>
+
+    {% if request.session.carro.items %}
+      <div class="text-center mt-3">
+        <a href="../pedidos" class="btn btn-warning w-100 fw-semibold shadow-sm">
+          Finalizar Compra
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- AOS animaciones -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+</script>

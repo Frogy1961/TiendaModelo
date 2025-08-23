@@ -1,35 +1,85 @@
 {% extends "website/Base.html" %}
-
 {% load static %}
 
-<!-- Bloque CSS -->
-<link rel="stylesheet" href="{% static 'website/css/servicios.css' %}">
-
 {% block content %}
-  <div>
-    <p style="color: white; font-size: 3vw;text-align: center;">{{categoria}}</p>
-  </div>
-  <div class="d-flex">
-   {% for post in posts %}
-      {% for categoria in post.categorias.all %}
-        <section class="page-section clearfix" style="margin-left: 10vw;">
-          <div>
-            <div class="card" style="width: 25vw; background-color: rgb(24, 64, 8)">
-              <img src="{{post.imagen.url}}" class="card-img-top" alt="img">
-              <div class="card-body">
-                <h5 class="card-title" style="color: white;">{{post.titulo}}</h5>
-                <p class="card-text" style="color: white;">{{post.contenido}}</p>
-                <p class="card-text" style="color: white;">Autor: {{post.autor}}</p>
-                <p class="card-text" style="color: white;">Categorìa: {{categoria}}</p>
 
-                <a href="{% url 'post' post.id %}" class="btn btn-warning" style="margin-left: 110px;">Más información</a>
+<!-- AOS CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+<style>
+  .category-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0dcaf0;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  .category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  }
+  .category-card img {
+    height: 250px;
+    object-fit: cover;
+  }
+  .category-card .card-body {
+    padding: 20px;
+  }
+  .category-card .card-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .category-meta {
+    font-size: 0.85rem;
+    color: #777;
+  }
+</style>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="category-title" data-aos="fade-up">{{ categoria }}</h2>
+    <div class="row g-4">
+      {% for post in posts %}
+        {% for categoria in post.categorias.all %}
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+            <div class="card category-card h-100 shadow-sm">
+              
+              {% if post.imagen %}
+                <img src="{{ post.imagen.url }}" class="card-img-top" alt="imagen de {{ post.titulo }}">
+              {% else %}
+                <img src="{% static 'website/img/placeholder.jpg' %}" class="card-img-top" alt="sin imagen disponible">
+              {% endif %}
+              
+              <div class="card-body">
+                <h5 class="card-title">{{ post.titulo }}</h5>
+                <p class="card-text">{{ post.contenido|truncatewords:18 }}</p>
+                <p class="category-meta">Autor: {{ post.autor }}</p>
+                <p class="category-meta">Categoría: {{ categoria }}</p>
+                <a href="{% url 'post' post.id %}" class="btn btn-primary btn-sm mt-2">Más información</a>
               </div>
             </div>
           </div>
-      {% endfor %}    
-        </section>
-   
-
-   {% endfor %}
+        {% endfor %}
+      {% endfor %}
+    </div>
   </div>
-{% endblock content %}   
+</section>
+
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+
+{% endblock content %}
+
