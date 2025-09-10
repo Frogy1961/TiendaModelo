@@ -78,7 +78,7 @@ WSGI_APPLICATION = "modelstore.wsgi.application"
 # DATABASE
 DATABASES = {
     "default": dj_database_url.config(
-        default=config("DATABASE_URL", default="postgresql://postgres:postgres@localhost:5432/model_store"),
+        default=config("DATABASE_URL"),
         conn_max_age=600,
         ssl_require=True,
     )
