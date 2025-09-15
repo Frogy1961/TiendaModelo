@@ -8,6 +8,22 @@ from django.contrib.messages import constants as mensajes_de_error
 from decouple import config
 import dj_database_url
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
+
 # BASE DIR
 BASE_DIR = Path(__file__).resolve().parent.parent
 
