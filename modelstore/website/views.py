@@ -10,7 +10,7 @@ def home(request):
 
     carro=Carro(request)
 
-    return render(request, "home.html")
+    return render(request,"website/home.html")
 
 
 
