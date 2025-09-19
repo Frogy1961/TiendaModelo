@@ -1,0 +1,50 @@
+# =========================
+# Archivos de configuración sensibles
+# =========================
+.env
+.env.local
+*.key
+
+# =========================
+# Archivos de base de datos locales
+# =========================
+*.sqlite3
+
+# =========================
+# Archivos de Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.log
+
+# =========================
+# Virtual environments
+# =========================
+venv/
+env/
+.venv/
+ENV/
+
+# =========================
+# Archivos de sistema
+# =========================
+.DS_Store
+.idea/
+.vscode/
+
+# =========================
+# Archivos de Django
+# =========================
+/staticfiles/        # Carpeta de static recolectados (collectstatic en Render)
+/media/              # Archivos subidos por usuarios (no se versionan)
+/static/             # En caso de generar estáticos locales
+
+# =========================
+# Archivos de coverage o pruebas
+# =========================
+.coverage
+htmlcov/
