@@ -27,4 +27,4 @@ def contact(request):
             except:
                 return redirect("/contacto/?invalido")
 
-    return render(request, "Contacto/Contacto.html", {'MiFormulario':formulario_contacto})
+    return render(request, "contacto/contacto.html", {'MiFormulario':formulario_contacto})

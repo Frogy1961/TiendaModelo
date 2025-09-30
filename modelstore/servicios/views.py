@@ -7,5 +7,4 @@ def services(request):
 
     servicios=Servicio.objects.all()
 
-    return render(request, "servicios/Servicios.html", {"servicios" : servicios})
-
+    return render(request, "servicios/servicios.html", {"servicios" : servicios})
